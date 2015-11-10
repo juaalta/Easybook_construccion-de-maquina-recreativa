@@ -1,0 +1,85 @@
+easybook:
+    parameters:
+        kindlegen.path: '/home/sopra/kindlegen/kindlegen'
+        kindlegen.command_options: '-c0 verbose'
+        parser.options:
+            code_block_type: github
+
+book:
+    title:            "La máquina arcade de Juansal"
+    author:           "Juan Salvador Aleixandre Talens"
+    edition:          "Primera edicion"
+    language:         es
+    publication_date: ~
+
+    generator: { name: easybook, version: 4.9.0 }
+
+    contents:
+        # available content types: acknowledgement, afterword, appendix, author,
+        # chapter, conclusion, cover, dedication, edition, epilogue, foreword,
+        # glossary, introduction, license, lof (list of figures), lot (list of
+        # tables), part, preface, prologue, title, toc (table of contents)
+        - { element: cover}
+        - { element: toc   }
+        - { element: chapter, number: 1, content: README.md }
+        - { element: chapter, number: 2, content: el_mueble/README.md }
+        - { element: chapter, number: 2.1, content: el_mueble/construccion_del_mueble.md }
+        - { element: chapter, number: 2.2, content: el_mueble/entrada_de_alimentacion_y_ventilacion.md }
+        - { element: chapter, number: 2.3, content: el_mueble/cableado.md }
+        - { element: chapter, number: 2.4, content: el_mueble/botones_de_encendido_y_apagado_de_la_maquina.md }
+        - { element: chapter, number: 2.5, content: el_mueble/bezel.md }
+        - { element: chapter, number: 3, content: el_video/README.md }
+        - { element: chapter, number: 4, content: los_controles/README.md }
+        - { element: chapter, number: 5, content: el_sonido/README.md }
+        - { element: chapter, number: 6, content: la_decoracion/README.md }
+        - { element: chapter, number: 7, content: agradecimientos/README.md }
+        - { element: lof   }
+        - { element: glossary, content: glossary.md }
+
+    editions:
+        ebook:
+            format:         epub
+            highlight_code: true
+            include_styles: true
+            labels:         ['appendix', 'chapter']  # labels also available for: "figure", "table"
+            theme:          clean
+            toc:
+                deep:       1
+                elements:   ["appendix", "chapter", "part"]
+
+        kindle:
+            extends:        ebook
+            format:         mobi
+
+        print:
+            format:         pdf
+            highlight_code: true
+            include_styles: true
+            isbn:           ~
+            labels:         ["appendix", "chapter"]  # labels also available for: "figure", "table"
+            margin:
+                top:        25mm
+                bottom:     25mm
+                inner:      30mm
+                outer:      20mm
+            page_size:      A4
+            theme:          clean
+            toc:
+                deep:       2
+                elements:   ["appendix", "chapter", "part"]
+            two_sided:      true
+
+        web:
+            format:         html
+            highlight_code: true
+            include_styles: true
+            labels:         ["appendix", "chapter"]  # labels also available for: "figure", "table"
+            theme:          clean
+            toc:
+                deep:       2
+                elements:   ["appendix", "chapter"]
+
+        website:
+            extends:        web
+            format:         html_chunked
+
